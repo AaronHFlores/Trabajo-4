@@ -314,6 +314,20 @@ function createPlane(){
 	airplane.mesh.position.y = 100;
 	scene.add(airplane.mesh);
 }
+function updatePlane(){
+  var targetY = normalize(mousePos.y,-.75,.75,25, 175);
+  var targetX = normalize(mousePos.x,-.75,.75,-100, 100);
+  airplane.mesh.position.y = targetY;
+  airplane.mesh.position.x = targetX;
+  //airplane.propeller.rotation.x += 0.3;
+}
+function loop(){
+  updatePlane();
+  sea.mesh.rotation.z += .005;
+  sky.mesh.rotation.z += .01;
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+}
 function init() {
 	// set up the scene, the camera and the renderer
 	createScene();
